@@ -827,61 +827,96 @@ main {
    RESPONSIVE DESIGN
    ====================================================== */
 /* Tablets (pantallas medianas, entre 768px y 1024px) */
+.listado-articulos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-rows: 260px;
+  gap: 20px;
+}
+
+/* Solo en desktop permitimos algunos destacados */
+.articulo2,
+.articulo4,
+.articulo7 {
+  grid-column: span 2;
+}
+
+.articulo5 {
+  grid-row: span 2;
+}
+
+/* ============================= */
+/* TABLETS (≤ 1024px) */
+/* ============================= */
+
 @media (max-width: 1024px) {
   .listado-articulos {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 220px;
     gap: 15px;
   }
-  .articulo2,
-  .articulo4,
-  .articulo7 {
+
+  /* Reset TOTAL de spans */
+  .listado-articulos > div {
     grid-column: span 1;
-  }
-  .articulo5,
-  .articulo6 {
     grid-row: span 1;
   }
 }
-/* Celulares (pantallas menores a 768px) */
+
+/* ============================= */
+/* CELULARES (≤ 768px) */
+/* ============================= */
+
 @media (max-width: 768px) {
   .listado-articulos {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 200px;
     gap: 12px;
   }
 
-  /* 🔹 Collage tipo “mosaico” */
-  .articulo1 { grid-column: span 1; }
-  .articulo2 { grid-column: span 2; grid-row: span 1; }
-  .articulo3 { grid-row: span 1; }
-  .articulo4 { grid-column: span 1; }
-  .articulo5 { grid-column: span 1; grid-row: span 2; }
-  .articulo6 { grid-column: span 1; }
-  .articulo7 { grid-column: span 2; }
+  /* Grid limpio y ordenado */
+  .listado-articulos > div {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
 
-  /* Títulos más pequeños */
+  /* Solo un destacado opcional */
+  .articulo1 {
+    grid-column: span 2;
+  }
+
   .listado-articulos h4 {
     font-size: 0.9rem;
     padding: 6px 0;
   }
 }
-/* Móviles pequeños (pantallas menores a 480px) */
+
+/* ============================= */
+/* MÓVILES PEQUEÑOS (≤ 480px) */
+/* ============================= */
+
 @media (max-width: 480px) {
   .listado-articulos {
     grid-template-columns: 1fr;
-    grid-auto-rows: 220px;
+    grid-auto-rows: auto;
+    gap: 10px;
   }
-  .listado-articulos div {
+
+  .listado-articulos > div {
+    grid-column: span 1;
+    grid-row: span 1;
     padding: 8px;
   }
+
   .listado-articulos img {
     padding: 5px;
   }
+
   .listado-articulos h4 {
     font-size: 0.85rem;
   }
 }
+/* =============================== */
 .bait {
   display: flex;
   justify-content: center;
